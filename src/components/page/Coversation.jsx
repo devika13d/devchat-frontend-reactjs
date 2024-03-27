@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import './conversation.css';
 import { useParams } from 'react-router-dom';
-import { getAPI, senderAPI } from '../services/allAPI'; 
+import { getAPI, senderAPI } from '../services/allAPI';
 import toast from 'react-hot-toast';
 import { useSocketContext } from '../context/Socket';
 import { messageContext } from '../context/AuthContext';
-import EmojiPicker from 'emoji-picker-react'; 
+import EmojiPicker from 'emoji-picker-react';
 import { emojify } from 'react-emoji';
 import notification from '../assets/sounds/happy-pop-2-185287.mp3'
 
@@ -19,11 +19,10 @@ function Conversation() {
   const inputRef = useRef(null);
   const messageContainerRef = useRef(null);
   const { socket } = useSocketContext();
-  const { setAddMessages } = useContext(messageContext); 
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false); 
-  const [showScrollUpArrow, setShowScrollUpArrow] = useState(false); 
+  const { setAddMessages } = useContext(messageContext);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [showScrollUpArrow, setShowScrollUpArrow] = useState(false);
 
- 
   const [messageShakeMap, setMessageShakeMap] = useState({});
   const audioRef = useRef(null);
 
@@ -39,16 +38,16 @@ function Conversation() {
   };
 
   const handleEmojiClick = (emojiObject, event) => {
-    setNewMessage(prevMessage => prevMessage + emojiObject.emoji); 
+    setNewMessage(prevMessage => prevMessage + emojiObject.emoji);
   };
 
   useEffect(() => {
     const handleMessage = (newMessage) => {
-      setMessages((prevMessages) => [...prevMessages, newMessage]); 
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
 
-     
+
       setMessageShakeMap((prevShakeMap) => {
-        return {...prevShakeMap, [newMessage.id]: true};
+        return { ...prevShakeMap, [newMessage.id]: true };
       });
       audioRef.current.play();
 
@@ -89,7 +88,7 @@ function Conversation() {
         const filteredMessages = response.data.filter(message => !deletedMessages.includes(message._id));
         setMessages(filteredMessages.map(message => ({
           ...message,
-          message: emojify(message.message) 
+          message: emojify(message.message)
         })));
 
         console.log(response.data);
@@ -156,13 +155,13 @@ function Conversation() {
       )}
       <div className="chat-input">
         <input type="text" ref={inputRef} placeholder="Type your message here" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
-        <button onClick={() => setShowEmojiPicker(!showEmojiPicker)}>😀</button> 
+        <button onClick={() => setShowEmojiPicker(!showEmojiPicker)}>😀</button>
         <button onClick={handleSubmit}><i className="fa-solid fa-paper-plane"></i></button>
       </div>
       {showEmojiPicker && (
         <EmojiPicker onEmojiClick={handleEmojiClick} />
       )}
-        <audio ref={audioRef} src={notification} preload="auto" />
+      <audio ref={audioRef} src={notification} preload="auto" />
     </div>
   );
 }
