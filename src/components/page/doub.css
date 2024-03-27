@@ -1,0 +1,18 @@
+
+
+  
+  
+  .ls{
+    background-image: url('https://tasneeminstitute.org/wp-content/uploads/2020/05/ParentingSocialMedia.jpg');
+    background-attachment: fixed;
+    animation: cards 4s linear alternate 2s;
+  }
+  
+  @keyframes cards {
+    0%{
+       transform: scale(0.8);
+    }
+    100%{
+        transform: scale(1);
+    }
+}

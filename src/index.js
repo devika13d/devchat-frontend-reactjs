@@ -3,11 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import AuthContext from './components/context/AuthContext';
+import { SocketContextProvider } from './components/context/Socket';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
   <React.StrictMode>
-    <App />
+    <AuthContext>
+      <BrowserRouter>
+        <SocketContextProvider>
+          <App />
+        </SocketContextProvider>
+      </BrowserRouter>
+    </AuthContext>
   </React.StrictMode>
 );
 

@@ -1,0 +1,29 @@
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .banner-image {
+    max-width: 100%;
+    animation: fadeIn 1s ease-in-out;
+  }
+  #foo{
+    margin-top: 100px;
+    background-color:#c8b4d3; 
+    color: white;
+    opacity: 0.7;
+  }
+  .l{
+   background-image: url('https://img.freepik.com/free-vector/dating-app-concept-people-find-friends-love_52683-23639.jpg?w=826&t=st=1706152115~exp=1706152715~hmac=8e54231b00b10a1d5826b5a54160664808d2fb0f731dc8ce52b49a73f2c80fc2');
+
+  }
+ 
+h1{
+  color: #51057ad0;
+  font-weight: bolder;
+}

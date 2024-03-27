@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Signup from './components/page/Signup';
+import Login from './components/page/Login';
+import Home from './components/main/Home';
+import Msg from './components/page/Msg'
+import Conversation from './components/page/Coversation';
+import toast, { Toaster } from 'react-hot-toast';
+import { useContext, useEffect } from 'react';
+import { isAuthTokenContext } from './components/context/AuthContext';
 
 function App() {
+  const { isAuthToken, setIsAuthToken } = useContext(isAuthTokenContext)
+  useEffect(() => {
+    const tsn = sessionStorage.getItem('token')
+    if (tsn) {
+      setIsAuthToken(tsn)
+    }
+  }, [isAuthToken])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/login' element={isAuthToken ? <Msg /> : <Login />} />
+        <Route path='/msg' element={<Msg />} />
+        <Route path='/conversation/:contactId' element={<Conversation />} />
+
+      </Routes>
+      <Toaster />
+    </>
   );
 }
 
