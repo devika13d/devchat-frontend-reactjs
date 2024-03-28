@@ -7,7 +7,7 @@ import { useSocketContext } from '../context/Socket';
 import { messageContext } from '../context/AuthContext';
 import EmojiPicker from 'emoji-picker-react';
 import { emojify } from 'react-emoji';
-import notification from '../assets/sounds/happy-pop-2-185287.mp3'
+import notification from '../assets/happy-pop-2-185287.mp3'
 
 
 function Conversation() {
