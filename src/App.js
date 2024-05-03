@@ -6,11 +6,12 @@ import Home from './components/main/Home';
 import Msg from './components/page/Msg'
 import Conversation from './components/page/Coversation';
 import toast, { Toaster } from 'react-hot-toast';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { isAuthTokenContext } from './components/context/AuthContext';
 
 function App() {
   const { isAuthToken, setIsAuthToken } = useContext(isAuthTokenContext)
+
   useEffect(() => {
     const tsn = sessionStorage.getItem('token')
     if (tsn) {

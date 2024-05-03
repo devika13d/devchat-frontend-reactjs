@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import './conversation.css';
 import { useParams } from 'react-router-dom';
 import { getAPI, senderAPI } from '../services/allAPI';
 import toast from 'react-hot-toast';
 import { useSocketContext } from '../context/Socket';
-import { messageContext } from '../context/AuthContext';
+import { fetchMsgContext, setDetailContext } from '../context/AuthContext';
 import EmojiPicker from 'emoji-picker-react';
 import { emojify } from 'react-emoji';
-import notification from '../assets/happy-pop-2-185287.mp3'
-
+import notification from '../assets/happy-pop-2-185287.mp3';
+import './conversation.css';
 
 function Conversation() {
   const { onlineUsers } = useSocketContext();
@@ -19,12 +18,19 @@ function Conversation() {
   const inputRef = useRef(null);
   const messageContainerRef = useRef(null);
   const { socket } = useSocketContext();
-  const { setAddMessages } = useContext(messageContext);
+  const { setAddMessages, getName } = useContext(setDetailContext);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [showScrollUpArrow, setShowScrollUpArrow] = useState(false);
-
   const [messageShakeMap, setMessageShakeMap] = useState({});
+  const { fetchMsg, setFetchMsg } = useContext(fetchMsgContext)
   const audioRef = useRef(null);
+
+  console.log('sam', getName);
+  const spreadMsg = [{ ...newMessage, ...messages }]
+  useEffect(() => {
+    setFetchMsg(spreadMsg)
+  }, [messages])
+  console.log('newone', fetchMsg);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,13 +50,10 @@ function Conversation() {
   useEffect(() => {
     const handleMessage = (newMessage) => {
       setMessages((prevMessages) => [...prevMessages, newMessage]);
-
-
       setMessageShakeMap((prevShakeMap) => {
         return { ...prevShakeMap, [newMessage.id]: true };
       });
       audioRef.current.play();
-
     };
 
     if (socket) {
@@ -90,7 +93,7 @@ function Conversation() {
           ...message,
           message: emojify(message.message)
         })));
-
+        console.log('filmsg', filteredMessages);
         console.log(response.data);
       } catch (err) {
         toast.error('Error fetching messages', err);
@@ -130,13 +133,25 @@ function Conversation() {
     setShowScrollUpArrow(false);
   };
 
+
+  const user = getName.find(user => user._id === contactId);
+  console.log('karanam', contactId);
+
+
+  const username = user ? user.fullname : 'Unknown';
+  const profile = user ? user.profilePicture : "bg-primary"
+  localStorage.setItem('username', username);
+  localStorage.setItem('profile', profile);
+
   return (
     <div className="main-content align-items-center justify-content-center mt-4">
       <div className="chat-header align-items-center justify-content-center d-flex mt-3 w-100">
-        <h2>Messages</h2>
-        {isOnline ? <span className="online-status ms-3">Online</span> : <span className="offline-status ms-3">Offline</span>}
+        <span ><img className='pic' src={profile} alt="" /></span>
+        <h2>{username}</h2>
+        {isOnline ? <span className="online-status ms-3"></span> : <span className="offline-status ms-3"></span>}
+        <span className='ms-2'> {isOnline ? "Online" : "Offline"}</span>
       </div>
-      {messages.length === 0 && <h6 className='text-center' style={{ color: "grey" }}>Start new conversation</h6>}
+      {messages.length === 0 && <h6 className='text-center mt-3' style={{ color: "grey" }}>Start new conversation</h6>}
       <div className="chat-messages" ref={messageContainerRef} onScroll={handleScroll}>
         {messages.map((message, index) => (
           <div key={index} ref={index === messages.length - 1 ? lastMsgRef : null} className={`message ${message.senderId === contactId ? 'outgoing' : 'incoming'}`}>

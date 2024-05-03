@@ -153,3 +153,24 @@ body {
   cursor: pointer;
 }
 
+.online-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: green;
+  display: inline-block;
+}
+.offline-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+  display: inline-block;
+}
+.pic{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  /* background-color: blue; */
+}

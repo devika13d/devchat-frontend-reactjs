@@ -15,8 +15,8 @@ function Login() {
   const navigate = useNavigate();
   const [validated, setValidated] = useState(false);
   const [formData, setFormData] = useState({
-    username: '',
-    password: ''
+    username: 'dev10',
+    password: '123'
   });
   const [loading, setLoading] = useState(false);
   const handleSubmit = async (e) => {
