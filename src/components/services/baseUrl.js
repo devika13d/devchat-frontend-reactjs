@@ -1,1 +1,1 @@
-export const BASE_URL='https://devchatbackend-mongo.onrender.com'
+export const BASE_URL='https://chatapp-backend-mongodb.onrender.com'
