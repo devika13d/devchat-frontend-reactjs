@@ -126,6 +126,33 @@
 
 @media screen and (max-width: 576px) {
   .profile img {
-      width: 100%;
+      width: 28%;
   }
+} 
+@media screen and (min-width: 576px) {
+  .profile img {
+      width: 28%;
+  }
+} 
+@media screen and (max-width: 394px) {
+  .chat-input {
+    flex: 1;
+    margin-left: -37px;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+  }
+  .chat-input button{
+    width: 1px;
+    display: flex;
+    flex-direction: column;
+    margin-left: -4px;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  
 } 

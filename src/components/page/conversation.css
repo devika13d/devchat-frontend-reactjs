@@ -153,6 +153,7 @@ body {
   cursor: pointer;
 }
 
+
 .online-status {
   width: 10px;
   height: 10px;
@@ -173,4 +174,35 @@ body {
   border-radius: 50%;
   margin-right: 10px;
   /* background-color: blue; */
+}
+
+@media screen and (max-width: 535px) {
+.scroll-up-arrow {
+  position: fixed;
+  bottom: 99px;
+  right: 20px;
+  background-color: #aa00ff71;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+}
+}
+@media screen and (max-width: 293px) {
+  .scroll-up-arrow {
+    position: fixed;
+    bottom: 99px;
+    right: 20px;
+    background-color: #aa00ff71;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+  }
 }
