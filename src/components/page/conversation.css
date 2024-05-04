@@ -137,7 +137,30 @@ body {
     padding-left: 50px;
   }
 }
-
+@media only screen and (max-width: 448px) {
+  .message-time {
+    align-self: flex-start;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    padding-left: 173px;
+}
+}
+@media only screen and (max-width: 320px) {
+  .message-time {
+    align-self: flex-start;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    padding-left: 150px;
+}
+}
+@media only screen and (max-width: 267px) {
+  .message-time {
+    align-self: flex-start;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    padding-left: 110px;
+}
+}
 
 
 .scroll-up-arrow {
