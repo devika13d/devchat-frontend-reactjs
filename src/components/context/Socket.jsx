@@ -18,7 +18,7 @@ export const SocketContextProvider = ({ children }) => {
 
             console.log('us', user._id);
 
-            const newSocket = io('http://localhost:5000', {
+            const newSocket = io('https://devchatbackend-mongo.onrender.com', {
                 query: {
                     userId: user._id,
 
