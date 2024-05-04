@@ -69,6 +69,7 @@ body {
   display: flex;
   padding: 30px;
   position: sticky;
+  border: none;
   background-color: transparent;
 }
 
