@@ -103,7 +103,7 @@ body {
 
   .incoming,
   .outgoing {
-    max-width: 80%;
+    max-width: max-content;
     margin-left: 0;
   }
 }
@@ -118,7 +118,7 @@ body {
   }
 
   .message {
-    max-width: 80%;
+    max-width: max-content;
   }
 }
 
